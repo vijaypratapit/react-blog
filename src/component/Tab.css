@@ -1,0 +1,21 @@
+.container{
+    margin: 0;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    padding-left: 1px;
+   
+   
+}
+.heading{
+    border: 1px solid;
+    padding-right: 10px;
+    cursor: pointer !important
+}
+.tab-container{
+    display: flex;
+    height: 200px;
+    width: 200px;
+    border: 1px solid;
+    margin-left: 10px;
+}
