@@ -1,0 +1,14 @@
+/** @format */
+
+import React, { useState } from "react";
+function Counter() {
+  const [count, setCount] = useState(0);
+  console.log("Component rendered");
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+export default Counter;

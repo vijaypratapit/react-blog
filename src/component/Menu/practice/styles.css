@@ -1,0 +1,8 @@
+/** @format */
+
+.page-no {
+  padding: 7px;
+  margin: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+}

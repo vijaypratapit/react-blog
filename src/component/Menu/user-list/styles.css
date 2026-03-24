@@ -1,0 +1,13 @@
+/** @format */
+
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.user-item {
+  width: 30%;
+  background: #eee;
+  padding: 10px;
+}
