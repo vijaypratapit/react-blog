@@ -1,61 +1,37 @@
 /** @format */
-import { useState, useEffect } from "react";
-import "./styles.css";
-const ProdctCard = ({ image, title }) => {
-  return (
-    <div className='product-card'>
-      <img src={image} alt={title} className='product-img' />
-      <span>{title}</span>
-    </div>
-  );
-};
-const App = () => {
-  const [loading, setLoading] = useState(true);
-  const [products, setProducts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetch("https://dummyjson.com/products?limit=500");
-      const json = await data.json();
-      setProducts(json.products);
-      setLoading(false);
-    };
-    fetchData();
-  }, []);
-  const PAGE_SIZE = 10;
-  const totalProducts = products.length;
-  const noOfPages = Math.ceil(totalProducts / PAGE_SIZE);
-  const start = currentPage * PAGE_SIZE;
-  const end = start + PAGE_SIZE;
-  const handlePageNo = (n) => {
-    setCurrentPage(n);
-  };
-  if (loading) return <h1>Loading...</h1>;
+// /** @format */
+
+import React from "react";
+import Pagination from "./component/Menu/pagination";
+import { BrowserRouter, Route, Routes } from "react-router";
+import Accordian from "./component/Menu/accordian";
+import Body from "./component/Body";
+import Autocomplete from "./component/Menu/autocomplete";
+import FolderStructure from "./component/Menu/folder-structure";
+import "./component/i18n";
+import { UserList } from "./component/Menu/user-list/UserList";
+import Debounce from "./component/Menu/debouncing/Debounce";
+import Throttling from "./component/Menu/autocomplete/throttling";
+import Practice from "./component/Menu/practice";
+//import { useTranslation } from "react-i18next";
+const App = () => {
+  // const { t } = useTranslation();
   return (
-    <div className='App'>
-      <h1>Pagination</h1>
-      <div className='pagination-container'>
-        {[...Array(noOfPages).keys()].map((n) => (
-          <span
-            key={n}
-            className={"page-number" + (n == currentPage ? " active" : "")}
-            onClick={() => {
-              handlePageNo(n);
-            }}>
-            {n + 1}
-          </span>
-        ))}
-      </div>
-      <div className='product-container'>
-        {Array.isArray(products) &&
-          products
-            .slice(start, end)
-            .map((p) => (
-              <ProdctCard key={p.id} image={p.thumbnail} title={p.title} />
-            ))}
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes basePath={"/"}>
+        <Route path='/' element={<Body />}>
+          <Route path='/pagination' element={<Pagination />} />
+          <Route path='/accordian' element={<Accordian />} />
+          <Route path='/autocpmplete' element={<Autocomplete />} />
+          <Route path='/folder-structre' element={<FolderStructure />} />
+          <Route path='/user-list' element={<UserList />} />
+          <Route path='/debouncing' element={<Debounce />} />
+          <Route path='/throttling' element={<Throttling />} />
+          <Route path='/practice' element={<Practice />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 export default App;
